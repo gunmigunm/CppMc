@@ -18,6 +18,9 @@ jobs:
   windows-exe:
     name: Build CppMc.exe and publish release
     runs-on: windows-latest
+    env:
+      PYTHONIOENCODING: utf-8
+      PYTHONUTF8: "1"
 
     steps:
       - name: Check out source

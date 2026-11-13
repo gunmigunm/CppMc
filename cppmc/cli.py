@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -18,6 +19,26 @@ from .core import (
     load_config,
     save_config,
 )
+
+
+def _ensure_utf8_streams() -> None:
+    """Force UTF-8 output so Chinese logs never trip a cp936/cp1252 console.
+
+    Also covers the windowed (``--noconsole``) exe, where sys.stdout is None:
+    prints are then no-ops instead of an AttributeError.
+    """
+    for name in ("stdout", "stderr"):
+        stream = getattr(sys, name, None)
+        if stream is None:
+            setattr(sys, name, open(os.devnull, "w", encoding="utf-8"))
+            continue
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is None:
+            continue
+        try:
+            reconfigure(encoding="utf-8", errors="replace")
+        except (ValueError, OSError):
+            pass
 
 
 def _print_log(message: str) -> None:
@@ -42,6 +63,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    _ensure_utf8_streams()
     argv = list(sys.argv[1:] if argv is None else argv)
     parser = build_parser()
     args = parser.parse_args(argv)
