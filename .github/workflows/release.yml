@@ -46,7 +46,7 @@ jobs:
       - name: Build single-file exe
         shell: pwsh
         run: |
-          python -m PyInstaller --noconfirm --clean --onefile --noconsole --name CppMc --icon assets/CppMc.ico --workpath build/ci --specpath build/ci --distpath dist CppMc.py *> build_log.txt
+          python -m PyInstaller --noconfirm --clean --onefile --noconsole --name CppMc --icon "$env:GITHUB_WORKSPACE/assets/CppMc.ico" --workpath build/ci --specpath build/ci --distpath dist "$env:GITHUB_WORKSPACE/CppMc.py" *> build_log.txt
           $code = $LASTEXITCODE
           "### PyInstaller exit code: $code" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
           Get-Content -LiteralPath build_log.txt -Tail 40 | Out-String | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
