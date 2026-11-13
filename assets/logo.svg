@@ -21,9 +21,9 @@
     <polygon points="176,108 176,164 128,192 128,136" fill="#1f7d55"/>
   </g>
 
-  <!-- corner brackets: "C++" flavour, code-ish mark -->
-  <g fill="#3ecf8e" opacity="0.85">
-    <path d="M70 196 L52 196 L52 232 L70 232" fill="none" stroke="#3ecf8e" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M186 196 L204 196 L204 232 L186 232" fill="none" stroke="#3ecf8e" stroke-width="4" stroke-linejoin="round"/>
+  <!-- code brackets framing the block: [ block ] -->
+  <g fill="none" stroke="#3ecf8e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M62 98 L44 98 L44 176 L62 176"/>
+    <path d="M194 98 L212 98 L212 176 L194 176"/>
   </g>
 </svg>

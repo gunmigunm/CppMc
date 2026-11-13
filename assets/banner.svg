@@ -21,10 +21,10 @@
     <polygon points="280,162 280,237 215,275 215,200" fill="#1f7d55"/>
   </g>
 
-  <!-- code brackets echoing "C++" -->
-  <g fill="none" stroke="#3ecf8e" stroke-width="5" stroke-linejoin="round" opacity="0.8">
-    <path d="M152 292 L128 292 L128 330 L152 330"/>
-    <path d="M278 292 L302 292 L302 330 L278 330"/>
+  <!-- code brackets framing the block: [ block ] -->
+  <g fill="none" stroke="#3ecf8e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M138 138 L116 138 L116 262 L138 262"/>
+    <path d="M292 138 L314 138 L314 262 L292 262"/>
   </g>
 
   <text x="344" y="212" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="92" font-weight="700" fill="#e8eaf0">C<tspan fill="#3ecf8e">++</tspan>mc</text>
