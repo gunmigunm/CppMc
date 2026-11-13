@@ -133,7 +133,7 @@ cppmc/auth.py         # 微软设备码登录、Xbox/XSTS/Minecraft 链路、令
 cppmc/cli.py          # 命令行接口
 cppmc/ui.py           # Tkinter 界面实现
 cppmc/gui.py          # 界面入口（转出 ui.run_gui）
-CppMc/__init__.py     # 包导出
+cppmc/__init__.py     # 包导出
 assets/               # 启动器自己的图标与横幅（SVG）
 tools/                # 图标生成、宣传片帧与剪辑脚本
 run.bat               # Windows 一键启动
