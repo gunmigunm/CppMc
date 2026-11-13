@@ -32,7 +32,10 @@ jobs:
           python-version: "3.13"
 
       - name: Install build tools
-        run: python -m pip install --disable-pip-version-check pyinstaller pillow
+        run: |
+          python -m pip install --disable-pip-version-check pyinstaller pillow
+          python --version
+          python -m PyInstaller --version
 
       - name: Draw the icon
         run: python tools/make_icon.py assets
@@ -41,15 +44,13 @@ jobs:
         run: python CppMc.py --list
 
       - name: Build single-file exe
-        run: >
-          python -m PyInstaller
-          --noconfirm --clean --onefile --noconsole
-          --name CppMc
-          --icon assets/CppMc.ico
-          --workpath build/ci
-          --specpath build/ci
-          --distpath dist
-          CppMc.py
+        shell: pwsh
+        run: |
+          python -m PyInstaller --noconfirm --clean --onefile --noconsole --name CppMc --icon assets/CppMc.ico --workpath build/ci --specpath build/ci --distpath dist CppMc.py *> build_log.txt
+          $code = $LASTEXITCODE
+          "### PyInstaller exit code: $code" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          Get-Content -LiteralPath build_log.txt -Tail 40 | Out-String | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          if ($code -ne 0) { throw "PyInstaller failed with exit code $code" }
 
       - name: Verify the exe exists
         run: |
