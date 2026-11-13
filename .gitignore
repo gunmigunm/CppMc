@@ -7,7 +7,14 @@ venv/
 
 # launcher data / test leftovers
 .test-game/
+install_263.log
 *.log
+
+# packaging output
+.build/
+build/
+dist/
+*.spec
 
 # editors
 .vscode/

@@ -1,0 +1,74 @@
+name: build-and-release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "CppMc.py"
+      - "cppmc/**"
+      - "assets/**"
+      - "tools/**"
+      - ".github/workflows/release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows-exe:
+    name: Build CppMc.exe and publish release
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install build tools
+        run: python -m pip install --disable-pip-version-check pyinstaller pillow
+
+      - name: Draw the icon
+        run: python tools/make_icon.py assets
+
+      - name: Smoke test the launcher code
+        run: python CppMc.py --list
+
+      - name: Build single-file exe
+        run: >
+          python -m PyInstaller
+          --noconfirm --clean --onefile --noconsole
+          --name CppMc
+          --icon assets/CppMc.ico
+          --workpath build/ci
+          --specpath build/ci
+          --distpath dist
+          CppMc.py
+
+      - name: Verify the exe exists
+        run: |
+          if (!(Test-Path dist/CppMc.exe)) { throw "CppMc.exe was not produced" }
+          Get-Item dist/CppMc.exe | Select-Object Name, Length
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.0
+          name: C++mc v1.0.0
+          fail_on_unmatched_files: true
+          body: |
+            ## C++mc v1.0.0
+
+            纯 Python 写成的 Minecraft 启动器，打包为单文件 Windows exe，绿色运行、无需安装 Python。
+
+            - 双击 `CppMc.exe` 打开深色界面：选版本 → 填名字 → 启动游戏
+            - 首次启动会把游戏文件下到 `%APPDATA%\CppMc\game`（带 SHA1 校验、并发下载、失败重试）
+            - 命令行：`CppMc.exe --list`、`--install 26.3`、`--launch 26.3 --name Steve`
+
+            源码与说明：https://github.com/gunmigunm/CppMc
+
+            游戏本体文件不随包分发，全部来自 Mojang 官方接口。
+          files: dist/CppMc.exe
