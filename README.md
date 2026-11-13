@@ -1,5 +1,13 @@
 # C++mc
 
+<p align="center">
+  <img src="assets/banner.svg" alt="C++mc — 纯 Python 写成的 Minecraft 启动器" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/logo.svg" alt="logo" width="96">
+</p>
+
 > 一个用 **纯 Python**（只依赖标准库）写的 Minecraft 启动器。
 > 名字叫 C++mc，代码是 Python，游戏是 Java —— 三重叛逆。
 
@@ -41,6 +49,19 @@ python CppMc.py
 
 Windows 上也可以直接双击 `run.bat`。
 
+## 为什么仓库里没有游戏文件（客户端 / libraries / assets）
+
+这是有意的，也是必须的：
+
+- **体积**：一个现代版本光 `assets` 就有约 490MB、5000+ 个文件，客户端 jar + 依赖库再加 150MB 左右。GitHub 单文件上限 100MB，硬塞进来只会变成一堆 LFS 垃圾。
+- **合规**：Mojang 的游戏资源可以在本机通过官方渠道下载使用，但不允许第三方再分发。所以仓库只放启动器代码，资源一律由启动器从 Mojang 官方接口现拉。
+- **效果是一样的**：第一次点「启动游戏」，CppMc 会自动把该版本需要的东西全部下到 `%APPDATA%\CppMc\game`，逐个做 SHA1 校验，失败自动重试；之后再启动就是秒开。
+
+想验证这一点，跑一次 `python CppMc.py --install 26.3`，然后看 `%APPDATA%\CppMc\game` 下的
+`versions/`、`libraries/`、`assets/` 三个目录。
+
+仓库里的 `assets/` 只放**启动器自己的**视觉资产（SVG 图标、README 横幅），纯文本格式，可以直接改。
+
 ## 命令行用法
 
 ```bash
@@ -63,6 +84,8 @@ cppmc/core.py         # 核心：版本元数据、下载、规则解析、参�
 cppmc/cli.py          # 命令行接口
 cppmc/gui.py          # Tkinter 图形界面
 cppmc/__init__.py     # 包导出
+assets/               # 启动器自己的图标与横幅（SVG）
+run.bat               # Windows 一键启动
 ```
 
 核心逻辑和界面完全解耦：`Launcher` 类不依赖 tkinter，可以直接当库用：
@@ -111,6 +134,9 @@ game in offline mode. A dark-themed Tkinter GUI and a full CLI are included.
 python CppMc.py                       # GUI
 python CppMc.py --launch 1.21.5 --name Steve
 ```
+
+Game files are never committed here: the launcher fetches them from Mojang's official
+API on first run (see the section above).
 
 Limitations: offline mode only (no Microsoft account login), vanilla only (no
 `inheritsFrom` mod loader versions).
