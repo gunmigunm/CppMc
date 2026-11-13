@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="C++mc logo">
+  <defs>
+    <linearGradient id="plate" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#171b24"/>
+      <stop offset="1" stop-color="#0d1017"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3ecf8e" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#3ecf8e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="8" y="8" width="240" height="240" rx="48" fill="url(#plate)"/>
+  <rect x="8" y="8" width="240" height="240" rx="48" fill="none" stroke="#2b3040" stroke-width="2"/>
+  <circle cx="128" cy="134" r="96" fill="url(#halo)"/>
+
+  <!-- isometric block: top / left / right faces -->
+  <g stroke="#0d1017" stroke-width="2" stroke-linejoin="round">
+    <polygon points="128,80 176,108 128,136 80,108" fill="#4ade9b"/>
+    <polygon points="80,108 128,136 128,192 80,164" fill="#2b9d6e"/>
+    <polygon points="176,108 176,164 128,192 128,136" fill="#1f7d55"/>
+  </g>
+
+  <!-- corner brackets: "C++" flavour, code-ish mark -->
+  <g fill="#3ecf8e" opacity="0.85">
+    <path d="M70 196 L52 196 L52 232 L70 232" fill="none" stroke="#3ecf8e" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M186 196 L204 196 L204 232 L186 232" fill="none" stroke="#3ecf8e" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+</svg>

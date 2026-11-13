@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-label="C++mc — 纯 Python 写成的 Minecraft 启动器">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1017"/>
+      <stop offset="0.55" stop-color="#141821"/>
+      <stop offset="1" stop-color="#1b2130"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3ecf8e" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#3ecf8e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="400" fill="url(#bg)"/>
+  <circle cx="215" cy="200" r="165" fill="url(#glow)"/>
+
+  <!-- isometric block -->
+  <g stroke="#0d1017" stroke-width="2.5" stroke-linejoin="round">
+    <polygon points="215,125 280,162 215,200 150,162" fill="#4ade9b"/>
+    <polygon points="150,162 215,200 215,275 150,237" fill="#2b9d6e"/>
+    <polygon points="280,162 280,237 215,275 215,200" fill="#1f7d55"/>
+  </g>
+
+  <!-- code brackets echoing "C++" -->
+  <g fill="none" stroke="#3ecf8e" stroke-width="5" stroke-linejoin="round" opacity="0.8">
+    <path d="M152 292 L128 292 L128 330 L152 330"/>
+    <path d="M278 292 L302 292 L302 330 L278 330"/>
+  </g>
+
+  <text x="344" y="212" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="92" font-weight="700" fill="#e8eaf0">C<tspan fill="#3ecf8e">++</tspan>mc</text>
+
+  <text x="348" y="266" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" fill="#9aa3b2">纯 Python 标准库写成的 Minecraft 启动器</text>
+
+  <text x="348" y="308" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#6f788a" letter-spacing="1.2">STANDARD LIBRARY ONLY   ·   OFFLINE MODE   ·   SHA1 VERIFIED DOWNLOADS</text>
+
+  <g font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="17" font-weight="600">
+    <rect x="348" y="330" width="128" height="34" rx="17" fill="#1b2430" stroke="#2b3040"/>
+    <text x="412" y="352" fill="#3ecf8e" text-anchor="middle">GUI + CLI</text>
+    <rect x="488" y="330" width="104" height="34" rx="17" fill="#1b2430" stroke="#2b3040"/>
+    <text x="540" y="352" fill="#e8eaf0" text-anchor="middle">MIT</text>
+    <rect x="604" y="330" width="176" height="34" rx="17" fill="#1b2430" stroke="#2b3040"/>
+    <text x="692" y="352" fill="#e8eaf0" text-anchor="middle">923 VERSIONS</text>
+  </g>
+</svg>
