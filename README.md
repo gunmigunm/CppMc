@@ -11,9 +11,26 @@
 > 一个用 **纯 Python**（只依赖标准库）写的 Minecraft 启动器。
 > 名字叫 C++mc，代码是 Python，游戏是 Java —— 三重叛逆。
 
+<p align="center">
+  <a href="https://github.com/gunmigunm/CppMc/releases/latest">
+    <img src="https://img.shields.io/badge/download-CppMc.exe-3ecf8e?style=for-the-badge&labelColor=12161e" alt="download">
+  </a>
+  <a href="https://github.com/gunmigunm/CppMc/actions/workflows/release.yml">
+    <img src="https://github.com/gunmigunm/CppMc/actions/workflows/release.yml/badge.svg" alt="build">
+  </a>
+</p>
+
 [English](#english) | 中文
 
 ---
+
+## 下载（Windows 免安装）
+
+不需要装 Python，直接下打包好的单文件 exe：
+
+**[⬇ 下载 CppMc.exe（最新 Release）](https://github.com/gunmigunm/CppMc/releases/latest)**
+
+双击就能开界面。exe 由 GitHub Actions 在每次推送时自动构建，图标、版本、构建日志都在 Release 里。
 
 ## 这是什么
 
@@ -85,6 +102,8 @@ cppmc/cli.py          # 命令行接口
 cppmc/gui.py          # Tkinter 图形界面
 cppmc/__init__.py     # 包导出
 assets/               # 启动器自己的图标与横幅（SVG）
+tools/make_icon.py    # 用 Pillow 画图标，CI 里重新生成 .ico
+.github/workflows/    # 自动构建 exe 并发 Release
 run.bat               # Windows 一键启动
 ```
 
@@ -129,6 +148,9 @@ only the standard library. It talks to Mojang's official APIs, downloads the cli
 libraries, natives and assets (with SHA1 verification), supports both the modern
 `arguments` metadata (1.13+) and the legacy `minecraftArguments` format, and launches the
 game in offline mode. A dark-themed Tkinter GUI and a full CLI are included.
+
+Download a prebuilt single-file `CppMc.exe` from the
+[latest release](https://github.com/gunmigunm/CppMc/releases/latest) — no Python needed.
 
 ```bash
 python CppMc.py                       # GUI
