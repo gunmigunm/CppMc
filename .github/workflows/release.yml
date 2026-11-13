@@ -64,7 +64,7 @@ jobs:
           python tools/build_promo.py
           $ff = (& python -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())").Trim()
           "ffmpeg: $ff" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
-          & $ff -y -hide_banner -loglevel error -i promo/CppMc_promo.mp4 -vf "fps=10,scale=800:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=bayer" promo/CppMc_promo.gif
+          & $ff -y -hide_banner -loglevel error -i promo/CppMc_promo.mp4 -vf "fps=8,scale=560:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64[p];[b][p]paletteuse=dither=none" promo/CppMc_promo.gif
           if ($LASTEXITCODE -ne 0) { throw "gif render failed" }
           Get-Item promo/CppMc_promo.gif, promo/CppMc_promo.mp4 | Select-Object Name, Length | Out-String | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
 
